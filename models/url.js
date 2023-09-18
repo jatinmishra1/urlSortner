@@ -1,4 +1,5 @@
 const mongoose=require("mongoose");
+const user = require("./user");
 
 const urlSchema=new mongoose.Schema({
     shortId:{
@@ -14,7 +15,11 @@ const urlSchema=new mongoose.Schema({
         {
             timestamp:{type:Number}
         }
-    ]
+    ],
+    createdBy:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"users"
+    }
 },{timestamps:true})
 
 const url=mongoose.model("url",urlSchema);
