@@ -20,8 +20,10 @@ async function handelUserLogin(req,res){
     }
     // console.log(user);
     const sessionId=uuidv4();
-    await setUser(sessionId,user);
-   await  res.cookie("uid",sessionId)
+    // await setUser(sessionId,user); //not needed in  jwt 
+    const token=setUser(user)
+//    await  res.cookie("uid",sessionId)
+    await res.cookie("uid",token);
    return  res.redirect("/")
 }
 
